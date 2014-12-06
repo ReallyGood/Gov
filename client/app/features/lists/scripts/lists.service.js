@@ -4,13 +4,15 @@
 'use strict';
 
 (function() {
-    angular.module('Gov').service('Lists', Lists);
+    angular.module('Gov.Lists').service('Lists', Lists);
 
-    function Lists(Config, $resource) {
-        var ListResource = $resource(Config.rest.serverUrl + '/lists/:id', {id: '@id'});
+    function Lists(Config, Restangular) {
+        var ListResource = Restangular.service('lists');
 
         this.getList = function(id) {
-            return ListResource.get({id: id});
+            return ListResource.one(id).get().then(function(list) {
+                return list.plain();
+            });
         }
     }
 })();
