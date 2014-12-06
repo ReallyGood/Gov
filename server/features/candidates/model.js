@@ -8,43 +8,43 @@ var collection = db.collection('lists');
 
 /*
  Candidate:
-	{
-		name: String
-	}
+ {
+ name: String
+ }
  */
 
 var Candidates = {};
 
 Candidates.getByName = function(name) {
-	var deferred = q.defer();
+    var deferred = q.defer();
 
-	collection.find({name: new RegExp(name)}).toArray(function(error, data) {
-		if (data) {
-			deferred.resolve(data);
-		} else {
-			deferred.reject(500);
-		}
-	});
+    collection.find({name: new RegExp(name)}).toArray(function(error, data) {
+        if (data) {
+            deferred.resolve(data);
+        } else {
+            deferred.reject(500);
+        }
+    });
 
-	return deferred.promise;
+    return deferred.promise;
 };
 
 Candidates.add = function(name) {
-	var deferred = q.defer();
+    var deferred = q.defer();
 
-	if (!name || typeof name !== 'string') {
-		deferred.reject(400);
-	} else {
-		collection.insert({name: name}, function(error, data) {
-			if (data) {
-				deferred.resolve(data);
-			} else {
-				deferred.reject(500);
-			}
-		});
-	}
+    if (!name || typeof name !== 'string') {
+        deferred.reject(400);
+    } else {
+        collection.insert({name: name}, function(error, data) {
+            if (data) {
+                deferred.resolve(data);
+            } else {
+                deferred.reject(500);
+            }
+        });
+    }
 
-	return deferred.promise;
+    return deferred.promise;
 };
 
 module.exports = Candidates;

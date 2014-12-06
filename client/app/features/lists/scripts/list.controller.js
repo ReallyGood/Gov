@@ -4,10 +4,10 @@
 'use strict';
 
 (function() {
-	angular.module('Gov').controller('ListCtrl', ListCtrl);
+    angular.module('Gov').controller('ListCtrl', ListCtrl);
 
-	function ListCtrl(Lists) {
+    function ListCtrl(Lists) {
 
-		Lists.getList()
-	}
+        Lists.getList()
+    }
 })();

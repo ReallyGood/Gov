@@ -4,15 +4,15 @@
 var mongoskin = require('mongoskin');
 
 function DatabaseManager() {
-	var methods = {};
+    var methods = {};
 
-	var connection = mongoskin.db('mongodb://localhost:27017/gov');
+    var connection = mongoskin.db('mongodb://localhost:27017/gov');
 
-	methods.getConnection = function() {
-		return connection;
-	};
+    methods.getConnection = function() {
+        return connection;
+    };
 
-	return methods;
+    return methods;
 }
 
 module.exports = DatabaseManager();

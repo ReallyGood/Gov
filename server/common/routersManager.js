@@ -4,15 +4,15 @@
 var config = require('../config');
 
 function RoutersManager(app) {
-	var methods = {};
+    var methods = {};
 
-	methods.registerRouters = function() {
-		config.features.forEach(function(feature) {
-			app.use('/', require('./../features/' + feature + '/router'));
-		});
-	};
+    methods.registerRouters = function() {
+        config.features.forEach(function(feature) {
+            app.use('/', require('./../features/' + feature + '/router'));
+        });
+    };
 
-	return methods;
+    return methods;
 }
 
 module.exports = RoutersManager;

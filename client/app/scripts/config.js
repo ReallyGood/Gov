@@ -4,11 +4,11 @@
 'use strict';
 
 (function() {
-	angular.module('Gov').constant(Config);
+    angular.module('Gov').constant(Config);
 
-	var Config = {
-		rest: {
-			serverUrl: 'http://localhost:3000'
-		}
-	};
+    var Config = {
+        rest: {
+            serverUrl: 'http://localhost:3000'
+        }
+    };
 })();
