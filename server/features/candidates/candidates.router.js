@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var responseManager = require('../../common/responseManager');
-var Candidates = require('./model');
+var Candidates = require('./candidates.model');
 
 router.get('/candidates', function(req, res) {
     var getByName = Candidates.getByName(req.query.name);

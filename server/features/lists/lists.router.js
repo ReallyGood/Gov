@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var responseManager = require('../../common/responseManager');
-var Lists = require('./model');
+var Lists = require('./lists.model');
 
 router.get('/lists', function(req, res) {
     var getAll = Lists.getAll();
