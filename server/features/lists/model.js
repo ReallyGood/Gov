@@ -52,8 +52,6 @@ Lists.getById = function(id) {
 Lists.add = function(list) {
 	var deferred = q.defer();
 
-	console.log(list);
-
 	if (!list || typeof list !== 'object') {
 		deferred.reject(400);
 	} else {
