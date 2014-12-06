@@ -1,7 +1,7 @@
 /**
  * Created by Adir on 06/12/2014.
  */
-function responseManager(req, res, promise) {
+function ResponseManager(req, res, promise) {
     promise.then(
         // success
         function(result) {
@@ -14,4 +14,4 @@ function responseManager(req, res, promise) {
     );
 }
 
-module.exports = responseManager;
+module.exports = ResponseManager;
