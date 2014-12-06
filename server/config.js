@@ -5,7 +5,7 @@ var config = {
 	server: {
 		port: 3000
 	},
-	features: ['lists']
+	features: ['lists', 'candidates']
 };
 
 module.exports = config;
