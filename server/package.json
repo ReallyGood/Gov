@@ -10,7 +10,9 @@
     "q": "^1.1.2"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "start": "node app.js"
+  },
   "author": "",
   "license": "ISC"
 }
