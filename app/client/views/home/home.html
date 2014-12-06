@@ -1,3 +1,10 @@
 <template name="home">
-    Hello 2015 elections!
+    <h3>ממשלת העם</h3>
+
+    {{#if currentUser}}
+        שלום {{currentUser.profile.name}}
+        <button class="ui button mini logout">יציאה</button>
+    {{else }}
+        <button class="ui button facebook">התחברות עם Facebook</button>
+    {{/if}}
 </template>
