@@ -4,6 +4,9 @@
     {{#if currentUser}}
         שלום {{currentUser.profile.name}}
         <button class="ui button mini logout">יציאה</button>
+
+        {{>candidatesList}}
+        {{>addCandidate}}
     {{else }}
         <button class="ui button facebook">התחברות עם Facebook</button>
     {{/if}}
