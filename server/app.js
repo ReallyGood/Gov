@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 
 var config = require('./config');
-var routersManager = require('./routers/routersManager')(app);
+var routersManager = require('./common/routersManager')(app);
 
 routersManager.registerRouters();
 app.listen(config.server.port);

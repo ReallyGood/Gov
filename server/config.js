@@ -4,7 +4,8 @@
 var config = {
 	server: {
 		port: 3000
-	}
+	},
+	features: ['lists']
 };
 
 module.exports = config;

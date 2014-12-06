@@ -1,13 +1,14 @@
 /**
  * Created by Adir on 06/12/2014.
  */
+var config = require('../config');
+
 function RoutersManager(app) {
 	var methods = {};
-	var routers = ['lists'];
 
 	methods.registerRouters = function() {
-		routers.forEach(function(router) {
-			app.use('/', require('./' + router));
+		config.features.forEach(function(feature) {
+			app.use('/', require('./../features/' + feature + '/router'));
 		});
 	};
 
