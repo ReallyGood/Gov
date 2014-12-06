@@ -6,13 +6,11 @@
 (function() {
     angular.module('Gov.Lists').service('Lists', Lists);
 
-    function Lists(Config, Restangular) {
+    function Lists(Restangular) {
         var ListResource = Restangular.service('lists');
 
         this.getList = function(id) {
-            return ListResource.one(id).get().then(function(list) {
-                return list.plain();
-            });
+            return ListResource.one(id).get();
         }
     }
 })();
