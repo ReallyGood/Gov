@@ -9,7 +9,7 @@ var collection = db.collection('lists');
 /*
  Candidate:
  {
- name: String
+    name: String
  }
  */
 

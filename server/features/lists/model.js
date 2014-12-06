@@ -9,13 +9,13 @@ var collection = db.collection('lists');
 /*
  List:
  {
- roles: [Role]
+    roles: [Role]
  }
 
  Role:
  {
- roleName: String
- ministerName: String
+    roleName: String
+    ministerName: String
  }
  */
 
