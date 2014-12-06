@@ -2,9 +2,12 @@
  * Created by Adir on 06/12/2014.
  */
 var q = require('q');
+var _ = require('lodash');
 
 var db = require('../../common/databaseManager').getConnection();
 var collection = db.collection('lists');
+
+var candidates = require('../candidates/candidates.model');
 
 /*
  List:
@@ -58,6 +61,10 @@ Lists.add = function(list) {
         collection.insert(list, function(error, data) {
             if (data) {
                 deferred.resolve(data);
+
+                // add new candidates
+                var candidateList = _.pluck(list.roles, 'ministerName');
+                candidates.bulkAddNew(candidateList);
             } else {
                 deferred.reject(500);
             }

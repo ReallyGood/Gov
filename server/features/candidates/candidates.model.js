@@ -47,4 +47,18 @@ Candidates.add = function(name) {
     return deferred.promise;
 };
 
+Candidates.bulkAddNew = function(names) {
+    if (!names || !Array.isArray(names)) return false;
+
+    names.forEach(function(name) {
+        collection.find({name: name}).toArray(function(error, data) {
+            if (data && data.length === 0) {
+                Candidates.add(name);
+            }
+        });
+    });
+
+    return true;
+};
+
 module.exports = Candidates;
