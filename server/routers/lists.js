@@ -4,12 +4,14 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/lists', function(req, res){
-    res.send('all lists');
+var Lists = require('../models/lists');
+
+router.get('/lists', function(req, res) {
+	res.send(Lists.getAll());
 });
 
-router.get('/lists/:id', function(req, res){
-    res.send('list #' + req.params.id);
+router.get('/lists/:id', function(req, res) {
+	res.send(Lists.getById(req.params.id));
 });
 
 module.exports = router;
