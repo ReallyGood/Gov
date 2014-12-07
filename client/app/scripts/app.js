@@ -1,6 +1,5 @@
 'use strict';
-
-angular
+var Gov = angular
     .module('Gov', [
         // angular modules
         'ngAnimate',
@@ -12,7 +11,7 @@ angular
         /// 3rd party
         'restangular',
         'ui.router',
-        //'ui.bootstrap',
+        'ui.bootstrap',
 
         // features
         'Gov.Lists'

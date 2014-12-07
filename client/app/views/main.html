@@ -1,1 +1,34 @@
-This is the main view.
+<div ng-controller="voteController" dir=rtl>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<h1>ממשלת החלומות</h1>
+			הרכב את ממשלת החלומות שלך, שתף עם אחרים וצפה בתוצאות.
+		</div>
+		<form class="form-horizontal" role="form">
+			<div class="row-fluid">
+				<div class="form-group" ng-repeat="job in jobs">
+					<label for="input{{ $index }}" class="col-sm-2 control-label">{{ job }}</label>
+					<div class="col-xs-10 col-sm-2" ng-repeat="candidate in vote[job]">
+						<input size=20 type="text" ng-model="candidate.name" typeahead="person for person in candidates | filter:$viewValue | limitTo:8" class="form-control" id="input{{ $index }}" placeholder="עדיפות {{ $index + 1 }}">
+					</div>
+					<div class="col-xs-1 col-sm-1">
+						<button ng-click="addCandidate(vote[job])" ng-if="vote[job].length < 3" class="btn btn-default">+</button>
+						<button ng-click="removeCandidate(vote[job])" ng-if="vote[job].length > 1" class="btn btn-default">-</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5" align="left">
+						<button ng-click="send()" class="btn btn-danger" ng-if="!sending && !sent">שלח</button>
+						<div ng-if="!sending && sent">נשלח!</div>
+						<div ng-if="sending">שולח...</div>
+						<div ng-if="sending || sent">
+							<!--<a ng-href="{{ shareLink }}">לינק לבחירה שלך</a>(קליק ימני, העתק)<br/>-->
+							<!--<a ng-href="https://docs.google.com/spreadsheets/d/1qusezQhlHj3zvGe-eg9D91pUSq5GpZ46wUNp6g1QSwY/edit?usp=sharing">צפה בכלל ההצבעות</a>-->
+							<!--<div fb-like="shareLink"></div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
