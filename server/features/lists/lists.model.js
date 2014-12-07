@@ -74,4 +74,37 @@ Lists.add = function(list) {
     return deferred.promise;
 };
 
+// TODO: doesn't works yet!
+Lists.getMostPopularCandidatesByRoleName = function(roleName) {
+    var deferred = q.defer();
+
+    var searchQuery = [
+        {
+            $match: {
+                'roles.roleName': {$eq: roleName}
+            }
+        },
+        {
+            $group: {
+                _id: '$roles.ministerName',
+                total: {$sum: 1}
+            }
+        },
+        {
+            $sort: {total: -1}
+        }
+    ];
+
+    collection.aggregate(searchQuery, function(error, data) {
+        if (data) {
+            deferred.resolve(data);
+        } else {
+            deferred.reject(500);
+
+        }
+    });
+
+    return deferred.promise;
+};
+
 module.exports = Lists;
