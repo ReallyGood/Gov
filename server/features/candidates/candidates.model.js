@@ -4,7 +4,7 @@
 var q = require('q');
 
 var db = require('../../common/databaseManager').getConnection();
-var collection = db.collection('lists');
+var collection = db.collection('candidates');
 
 /*
  Candidate:
