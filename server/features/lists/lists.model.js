@@ -60,11 +60,11 @@ Lists.add = function(list) {
     } else {
         collection.insert(list, function(error, data) {
             if (data) {
-                deferred.resolve(data);
-
                 // add new candidates
                 var candidateList = _.pluck(list.roles, 'ministerName');
                 candidates.bulkAddNew(candidateList);
+
+                deferred.resolve(data);
             } else {
                 deferred.reject(500);
             }

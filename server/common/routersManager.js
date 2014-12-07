@@ -8,7 +8,8 @@ function RoutersManager(app) {
 
     methods.registerRouters = function() {
         config.features.forEach(function(feature) {
-            app.use('/', require('./../features/' + feature + '/' + feature + '.router'));
+            var router = require('../features/' + feature + '/' + feature + '.router');
+            app.use('/', router);
         });
     };
 
