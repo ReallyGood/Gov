@@ -3,16 +3,18 @@
  */
 'use strict';
 
-angular.module('Gov.Lists',[])
+angular.module('Gov.Lists', [])
     .config(function($stateProvider) {
         $stateProvider
             .state('list', {
                 url: '/lists/:id',
                 controller: 'ListCtrl as ListCtrl',
-                templateUrl: 'features/lists/views/list.html',
+                templateUrl: function($stateParams) {
+                    return $stateParams.id ? 'features/lists/views/list.html' : 'features/lists/views/new-list.html';
+                },
                 resolve: {
                     List: function($stateParams, Lists) {
-                        return Lists.getList($stateParams.id);
+                        return $stateParams.id ? Lists.getListById($stateParams.id) : Lists.getNewList();
                     }
                 }
             });

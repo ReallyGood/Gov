@@ -1,13 +1,20 @@
 <div class="list">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <h1>ממשלת החלומות</h1>
 
-    <div class="roles">
-        <ul>
-            <li ng-repeat="role in ListCtrl.list.roles">
-                <span ng-bind="role.roleName"></span>
-                <span> - </span>
-                <span ng-bind="role.ministerName"></span>
-            </li>
-        </ul>
+            <h3> הרכב את ממשלת החלומות שלך, שתף עם אחרים וצפה בתוצאות.</h3>
+        </div>
+        <div class="row-fluid">
+            <div class="row" ng-repeat="role in ListCtrl.list.roles">
+                <span class="col-sm-2"
+                      ng-bind="role.roleName">
+                </span>
+
+                <div class="col-xs-10 col-sm-2">
+                    <span ng-bind="role.ministerName"></span>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>

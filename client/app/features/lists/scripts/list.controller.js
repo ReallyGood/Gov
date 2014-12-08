@@ -6,11 +6,14 @@
 (function() {
     angular.module('Gov.Lists').controller('ListCtrl', ListCtrl);
 
-    function ListCtrl(List) {
+    function ListCtrl(List, Lists, Candidates) {
         var self = this;
 
         function init() {
             self.list = List;
+
+            self.saveList = Lists.saveList;
+            self.getCandidates = Candidates.getCandidates;
         }
 
         init();
