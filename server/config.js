@@ -3,7 +3,7 @@
  */
 var config = {
     server: {
-        port: 3000
+        port: 3030
     },
     features: ['lists', 'candidates','users']
 };

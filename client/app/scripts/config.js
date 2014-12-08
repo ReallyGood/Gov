@@ -6,7 +6,7 @@
 (function() {
     var Config = {
         rest: {
-            serverUrl: 'http://localhost:3000/'
+            serverUrl: 'http://' + window.location.hostname + ':3030/'
         }
     };
 

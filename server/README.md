@@ -10,7 +10,7 @@
 ## How to run:
 1. Navigate to the "server" directory
 2. Run 'npm start'
-3. The server should be running on port "3000" (http://localhost:3000)
+3. The server should be running on port "3030" (http://localhost:3030)
 
 
 ## Q&A

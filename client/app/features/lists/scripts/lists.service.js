@@ -33,7 +33,9 @@
         };
 
         this.saveList = function(list) {
-          return ListsResource.post(list);
+            return ListsResource.post(list).then(function(result) {
+                return result[0];
+            });
         };
     }
 })();
