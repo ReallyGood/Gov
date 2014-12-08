@@ -74,33 +74,51 @@ Lists.add = function(list) {
     return deferred.promise;
 };
 
-// TODO: doesn't works yet!
+function countMostPopularCandidates(candidates) {
+    var mostPopular = [];
+
+    var obj = candidates.reduce(function(arr, curr) {
+        if (_.isUndefined(arr[curr])) {
+            arr[curr] = 1;
+        } else {
+            arr[curr] += 1;
+        }
+        return arr;
+    }, {});
+
+    for (var candidate in obj) {
+        if (!obj.hasOwnProperty(candidate)) continue;
+        mostPopular.push({
+            name: candidate,
+            count: obj[candidate]
+        });
+    }
+
+    mostPopular.sort(function(a,b) {
+        return b.count -a.count;
+    });
+
+    return mostPopular.splice(0, 5);
+}
+
 Lists.getMostPopularCandidatesByRoleName = function(roleName) {
     var deferred = q.defer();
 
-    var searchQuery = [
-        {
-            $match: {
-                'roles.roleName': {$eq: roleName}
-            }
-        },
-        {
-            $group: {
-                _id: '$roles.ministerName',
-                total: {$sum: 1}
-            }
-        },
-        {
-            $sort: {total: -1}
-        }
-    ];
+    collection.find({'roles.roleName': roleName}).toArray(function(error, data) {
+        var selectedRoleCandidates = [];
 
-    collection.aggregate(searchQuery, function(error, data) {
         if (data) {
-            deferred.resolve(data);
+            data.forEach(function(list) {
+                list.roles.some(function(role) {
+                    if (role.roleName === roleName) {
+                        return selectedRoleCandidates.push(role.ministerName);
+                    }
+                });
+            });
+
+            deferred.resolve(countMostPopularCandidates(selectedRoleCandidates));
         } else {
             deferred.reject(500);
-
         }
     });
 
