@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 var config = require('./config');
 var routersManager = require('./common/routersManager')(app);
 
+routersManager.initializePassport();
 routersManager.registerRouters();
 
 app.listen(config.server.port);
