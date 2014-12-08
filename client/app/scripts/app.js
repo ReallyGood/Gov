@@ -11,7 +11,15 @@ angular.module('Gov', [
 
     // features
     'Gov.Lists'
-]).config(function(RestangularProvider, Config) {
+]).config(function($urlRouterProvider, $stateProvider, RestangularProvider, Config) {
     RestangularProvider.setBaseUrl(Config.rest.serverUrl);
     RestangularProvider.setRestangularFields({id: '_id'});
+
+    $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: 'views/home.html'
+        });
+
+    $urlRouterProvider.otherwise('/');
 });
