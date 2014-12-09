@@ -1,7 +1,12 @@
 .home {
 
 	.header {
-		height: 45px;
+		line-height: 45px;
+		color: $primary-color;
+
+		a {
+			color: $primary-color;
+		}
 	}
 
 	.main-area {
