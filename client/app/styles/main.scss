@@ -1,6 +1,6 @@
 // bower:scss
 // endbower
 
-body {
-  direction: rtl;
-}
+@import 'variables';
+@import 'common';
+@import 'home';

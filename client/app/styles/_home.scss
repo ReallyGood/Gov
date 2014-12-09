@@ -1,0 +1,55 @@
+.home {
+
+	.header {
+		height: 45px;
+	}
+
+	.main-area {
+		background-color: $primary-color;
+		color: $inverse-font-color;
+		height: 450px;
+		text-align: center;
+		padding: 70px 0;
+		margin-bottom: -120px;
+	}
+
+	.titles {
+		margin-bottom: 50px;
+	}
+
+	.title {
+		margin-bottom: 10px;
+	}
+
+	.call-to-action {
+		border: 1px solid $inverse-font-color;
+		color: $inverse-font-color;
+		font-size: 1.1em;
+		display: inline-block;
+		padding: 10px 20px;
+
+		&.inverse {
+			border-color: $primary-color;
+			color: $primary-color;
+			font-size: 0.9em;
+		}
+	}
+
+	.top-list {
+		border: 1px solid #ddd;
+		background-color: #fff;
+		margin: 0 auto 50px;
+		height: 700px;
+		width: 700px;
+	}
+
+	.bottom-buttons {
+		text-align: center;
+	}
+
+	.footer {
+		background-color: $primary-color;
+		height: 35px;
+		margin-top: 70px;
+	}
+}

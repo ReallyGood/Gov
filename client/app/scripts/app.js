@@ -7,7 +7,6 @@ angular.module('Gov', [
     /// 3rd party
     'restangular',
     'ui.router',
-    'ui.bootstrap',
 
     // features
     'Gov.Lists'
