@@ -1,21 +1,218 @@
 body {
 	direction: rtl;
+	font-family: 'Open Sans Hebrew', serif;
 	color: $font-color;
 	font-size: $font-size;
-	background-color: $background-color;
 }
 
-h1, h2, h3, h4 {
-	margin: 0;
-	font-size: 1em;
+.navbar-brand {
+	float: right;
+	height: 50px;
+	padding: 15px 15px;
+	font-size: $font-size;
+	line-height: 20px;
+	margin-left: 0;
+	margin-right: -15px;
+	color: $primary-color !important;
+	font-weight: bold;
+
+	&:hover {
+		color: $font-color !important;
+	}
+}
+
+.navbar-header {
+	float: right;
+}
+
+.navbar-inverse {
+	background-color: #fff;
+}
+
+.navbar-fixed-top {
+	border: none;
+}
+
+.blue-bg {
+	background: url(../images/blue-bg.jpg) center top no-repeat;
+	background-size: 100% 500px;
+}
+
+.navbar-nav {
+	font-size: 14px;
+}
+
+.navbar-nav li {
+	line-height: 50px;
+	height: 50px;
+}
+
+.navbar-nav li a {
+	color: $font-color !important;
+	display: block;
+}
+
+.navbar-nav li a:hover {
+	background: #eee !important;
+	color: $font-color !important;
+}
+
+.navbar-nav .glyphicon {
+	color: $primary-color;
+}
+
+.navbar-nav .glyphicon.glyphicon-user {
+	font-size: $font-size;
+	display: inline-block;
+	float: right;
+	margin-left: 10px;
+}
+
+.middle-wrap {
+	background: #fff;
+	max-width: 680px;
+	margin: auto;
+	margin-top: 40px;
+	box-shadow: 0 0 5px #999;
+	padding-top: 0;
+}
+
+h1, h2 {
+	text-align: center;
+	color: $inverse-font-color;
+	font-weight: 200;
+	text-shadow: 1px 1px 0 #777;
 }
 
 h1 {
-	font-size: 2.5em;
+	font-size: 30px;
 }
 
-a,
-a:hover,
-a:focus {
-	text-decoration: none;
+h2 {
+	font-size: 16px;
+	font-weight: 100;
+	letter-spacing: 1px
+}
+
+.title {
+	margin-top: 100px;
+}
+
+label {
+	font-weight: normal;
+}
+
+.cta-btn.white {
+	padding: 0 20px;
+	display: block;
+	border: 2px solid #fff;
+	height: 50px;
+	background: $primary-color;
+	color: $inverse-font-color;
+	margin: 40px auto;
+	margin-bottom: 30px;
+	font-size: $font-size;
+	font-weight: 100;
+	letter-spacing: 1px;
+}
+
+.cta-btn.white:hover {
+	color: $primary-color;
+	background: #fff
+}
+
+.cta-btn.white.cta-bottom:hover {
+	border: 1px solid $primary-color;
+}
+
+.row-label, .row-field {
+	display: inline-block;
+	width: 40%;
+	padding-right: 20px;
+}
+
+.minister-name {
+	font-weight: bold;
+}
+
+.row-votes {
+	display: inline-block;
+	width: 5%;
+	font-size: 16px
+}
+
+.panel-heading {
+	padding: 0;
+	background: #fff;
+}
+
+.panel-heading a:hover:after {
+	content: "\e114";
+	color: $primary-color;
+	display: inline-block;
+	position: relative;
+	margin-left: 20px;
+	font-family: 'Glyphicons Halflings', serif;
+	font-size: 14px;
+	float: left;
+}
+
+.panel-heading a.collapsed:after {
+	content: "\e079";
+}
+
+.panel-heading a {
+	text-decoration: none !important;
+	line-height: 50px;
+	display: block;
+	font-size: $font-size;
+	background: #d0dfec
+}
+
+.panel-heading a.collapsed {
+	background: #fff;
+}
+
+.panel-group .panel + .panel {
+	margin-top: 0;
+}
+
+.panel, .panel-default > .panel-heading {
+	border: none;
+	background: #fff;
+}
+
+.panel-default > .panel-heading :hover {
+	background: #d0dfec;
+}
+
+.panel-body {
+	background: #dfeefb
+}
+
+.panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
+	border: none;
+}
+
+.sub-row {
+	line-height: 36px;
+	font-size: 14px;
+
+	.row-votes {
+		font-size: 14px;
+	}
+}
+
+footer {
+	background: $primary-color;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #ddd;
+	font-size: 12px;
+	margin-top: 80px;
+}
+
+footer a {
+	color: #fff !important;
 }

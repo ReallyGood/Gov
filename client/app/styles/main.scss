@@ -3,4 +3,6 @@
 
 @import 'variables';
 @import 'common';
-@import 'home';
+
+@import '../features/home/styles/main';
+@import '../features/lists/styles/main';

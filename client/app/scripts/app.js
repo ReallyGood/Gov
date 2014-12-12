@@ -7,18 +7,14 @@ angular.module('Gov', [
     /// 3rd party
     'restangular',
     'ui.router',
+    'ui.bootstrap',
 
     // features
+    'Gov.Home',
     'Gov.Lists'
-]).config(function($urlRouterProvider, $stateProvider, RestangularProvider, Config) {
+]).config(function($urlRouterProvider, RestangularProvider, Config) {
     RestangularProvider.setBaseUrl(Config.rest.serverUrl);
     RestangularProvider.setRestangularFields({id: '_id'});
-
-    $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: 'views/home.html'
-        });
 
     $urlRouterProvider.otherwise('/');
 });

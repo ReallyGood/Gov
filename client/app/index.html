@@ -1,28 +1,62 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="Gov">
 <head>
     <meta charset="utf-8">
-    <title>ממשלת העם שלי</title>
+    <title>ממשלת העם</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- build:css(.) styles/vendor.css -->
+    <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/opensanshebrew.css">
 
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-	<!-- endbuild -->
+    <!-- endbuild -->
 </head>
-<body ng-app="Gov">
+<body ng-controller="MainCtrl as MainCtrl">
 
-<div ui-view></div>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="home">ממשלת העם</a>
+        </div>
+
+        <div id="navbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a>
+                        <span class="glyphicon-user glyphicon"></span>
+                        <strong>התחבר</strong>
+                        &nbsp;
+                        <span class="glyphicon-chevron-left glyphicon"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="blue-bg">
+    <div class="container">
+        <div ui-view></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        Created by:
+        <a href="https://www.facebook.com/adir.amsalem1" target="_blank">Adir</a>,
+        <a href="http://jacksdesign.net" target="_blank">Leonid</a>,
+        <a href="" target="_blank">Name</a>,
+        <a href="" target="_blank">Name</a>
+    </div>
+</footer>
 
 <!-- build:js(app) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
@@ -31,25 +65,25 @@
 <![endif]-->
 <!-- endbuild -->
 
-<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
 <!-- build:js(app) scripts/vendor.js -->
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/lodash/dist/lodash.compat.js"></script>
 <script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.js"></script>
-<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/config.js"></script>
+<script src="scripts/main.controller.js"></script>
+<script src="features/home/scripts/home.module.js"></script>
+<script src="features/home/scripts/controllers/home.controller.js"></script>
 <script src="features/lists/scripts/lists.module.js"></script>
 <script src="features/lists/scripts/controllers/list.controller.js"></script>
 <script src="features/lists/scripts/services/lists.service.js"></script>

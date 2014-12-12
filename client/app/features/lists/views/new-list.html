@@ -1,33 +1,28 @@
-<div class="list">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <h1>ממשלת החלומות</h1>
+<div class="new-list">
+    <h2 class="title">הרכב את ממשלת החלומות שלך:</h2>
 
-            <h3> הרכב את ממשלת החלומות שלך, שתף עם אחרים וצפה בתוצאות.</h3>
-        </div>
-        <form class="form-horizontal" role="form" ng-submit="ListCtrl.saveList(ListCtrl.list)">
-            <div class="row-fluid">
-                <div class="form-group" ng-repeat="role in ListCtrl.list.roles">
+    <form class="form-horizontal" role="form" ng-submit="ListCtrl.saveList(ListCtrl.list)">
+        <div class="middle-wrap">
+            <div class="list-items">
+                <div class="list-item" ng-repeat="role in ListCtrl.list.roles">
                     <label for="input-{{$index}}"
-                           class="col-sm-2 control-label"
+                           class="row-field row-label"
                            ng-bind="role.roleName">
                     </label>
 
-                    <div class="col-xs-10 col-sm-2">
+                    <div class="row-field row-input">
                         <input type="text"
                                id="input-{{$index}}"
                                class="form-control"
+                               ng-class="{'no-empty': role.ministerName !== ''}"
                                ng-model="role.ministerName"
                                typeahead="candidates.name for candidates in ListCtrl.getCandidates($viewValue)"
-                               placeholder="הזן את המועמד שלך">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <button type="submit" class="btn btn-primary">שלח</button>
+                               placeholder="הזן את שם המועמד">
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <button type="submit" class="cta-btn white cta-bottom">שמור ושתף</button>
+    </form>
 </div>
