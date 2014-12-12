@@ -1,0 +1,50 @@
+<div class="home">
+    <h1 class="title">בנה לך ממשלה</h1>
+
+    <h2>טקסט כלשהו שהוא גם הסבר למה שקורה פה וגם הנעה לפעולה</h2>
+
+    <button ui-sref="list" type="button" class="cta-btn white">התחבר ותצביע עכשיו</button>
+
+    <div class="share-on-fb">
+        <a href="" title="שתף">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+        </a>
+    </div>
+
+    <div class="middle-wrap">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div ng-repeat="role in HomeCtrl.list.roles" class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading-{{$index}}">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{$index}}"
+                           aria-expanded="false" aria-controls="collapse-{{$index}}">
+                            <span class="row-field role-name" ng-bind="role.roleName"></span>
+                            <span class="row-field minister-name" ng-bind="role.ministerName"></span>
+                            <span class="row-votes">123</span>
+                            &nbsp;
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse-{{$index}}" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="heading-{{$index}}">
+                    <div class="panel-body">
+                        <div class="sub-row">
+                            <span class="row-label">&nbsp;</span><span class="row-field"><strong>בנימין
+                            נתניהו</strong></span><span class="row-votes">123</span>&nbsp;
+                        </div>
+                        <div class="sub-row">
+                            <span class="row-label">&nbsp;</span><span class="row-field"><strong>בנימין
+                            נתניהו</strong></span><span class="row-votes">123</span>&nbsp;
+                        </div>
+                        <div class="sub-row">
+                            <span class="row-label">&nbsp;</span><span class="row-field"><strong>בנימין
+                            נתניהו</strong></span><span class="row-votes">123</span>&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button ui-sref="list" type="button" class="cta-btn white cta-bottom">התחבר ותצביע עכשיו</button>
+</div>
