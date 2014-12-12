@@ -98,8 +98,16 @@ h2 {
 	margin-top: 100px;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 label {
 	font-weight: normal;
+}
+
+a[data-target] {
+	cursor: pointer;
 }
 
 .cta-btn.white {
@@ -131,14 +139,19 @@ label {
 	padding-right: 20px;
 }
 
-.minister-name {
-	font-weight: bold;
-}
-
 .row-votes {
 	display: inline-block;
 	width: 5%;
 	font-size: 16px
+}
+
+.sub-row {
+	line-height: 36px;
+	font-size: 14px;
+
+	.row-votes {
+		font-size: 14px;
+	}
 }
 
 .panel-heading {
@@ -192,15 +205,6 @@ label {
 
 .panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
 	border: none;
-}
-
-.sub-row {
-	line-height: 36px;
-	font-size: 14px;
-
-	.row-votes {
-		font-size: 14px;
-	}
 }
 
 footer {

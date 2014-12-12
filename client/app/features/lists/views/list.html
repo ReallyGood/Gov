@@ -13,12 +13,11 @@
             <div ng-repeat="role in ListCtrl.list.roles" class="panel panel-default">
                 <div class="panel-heading" role="tab" id="heading-{{$index}}">
                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{$index}}"
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index}}"
                            aria-expanded="false" aria-controls="collapse-{{$index}}">
-                            <span class="row-field role-name" ng-bind="role.roleName"></span>
-                            <span class="row-field minister-name" ng-bind="role.ministerName"></span>
+                            <span class="row-label" ng-bind="role.roleName"></span>
+                            <span class="row-field bold" ng-bind="role.ministerName"></span>
                             <span class="row-votes">123</span>
-                            &nbsp;
                         </a>
                     </h4>
                 </div>
@@ -26,16 +25,19 @@
                      aria-labelledby="heading-{{$index}}">
                     <div class="panel-body">
                         <div class="sub-row">
-                            <span class="row-label">&nbsp;</span><span class="row-field"><strong>בנימין
-                            נתניהו</strong></span><span class="row-votes">123</span>&nbsp;
+                            <span class="row-label"></span>
+                            <span class="row-field">בנימין  נתניהו</span>
+                            <span class="row-votes">123</span>
                         </div>
                         <div class="sub-row">
-                            <span class="row-label">&nbsp;</span><span class="row-field"><strong>בנימין
-                            נתניהו</strong></span><span class="row-votes">123</span>&nbsp;
+                            <span class="row-label"></span>
+                            <span class="row-field">בנימין  נתניהו</span>
+                            <span class="row-votes">123</span>
                         </div>
                         <div class="sub-row">
-                            <span class="row-label">&nbsp;</span><span class="row-field"><strong>בנימין
-                            נתניהו</strong></span><span class="row-votes">123</span>&nbsp;
+                            <span class="row-label"></span>
+                            <span class="row-field">בנימין  נתניהו</span>
+                            <span class="row-votes">123</span>
                         </div>
                     </div>
                 </div>
