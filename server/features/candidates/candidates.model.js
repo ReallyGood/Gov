@@ -78,7 +78,8 @@ Candidates.getMostPopularCandidatesByRoleName = function(roleName) {
         },
         {
             $sort: {
-                totalVotes: -1
+                totalVotes: -1,
+                _id: 1
             }
         },
         {
@@ -94,6 +95,34 @@ Candidates.getMostPopularCandidatesByRoleName = function(roleName) {
             });
 
             deferred.resolve(mostPopularCandidates);
+        } else {
+            deferred.reject(500);
+        }
+    });
+
+    return deferred.promise;
+};
+
+Candidates.getRoleList = function() {
+    var deferred = q.defer();
+
+    var searchQuery = [
+        {
+            $group: {
+                _id: '$roleName'
+            }
+        }
+    ];
+
+    collection.aggregate(searchQuery, function(error, data) {
+        if (data) {
+            var roleList = [];
+
+            _.each(data, function(role) {
+                roleList.push(role._id);
+            });
+
+            deferred.resolve(roleList);
         } else {
             deferred.reject(500);
         }

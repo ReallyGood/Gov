@@ -39,6 +39,12 @@ Lists.getById = function(id) {
         if (data) {
             candidates.getByListId(id).then(function(roles) {
                 var list = _.merge(data, {roles: roles});
+
+                _.each(list.roles, function(role) {
+                    delete role._id;
+                    delete role.listId;
+                });
+
                 deferred.resolve(list);
             });
         } else {
@@ -78,52 +84,33 @@ Lists.add = function(list) {
     return deferred.promise;
 };
 
-function countMostPopularCandidates(candidates) {
-    var mostPopular = [];
-
-    var obj = candidates.reduce(function(arr, curr) {
-        if (_.isUndefined(arr[curr])) {
-            arr[curr] = 1;
-        } else {
-            arr[curr] += 1;
-        }
-        return arr;
-    }, {});
-
-    for (var candidate in obj) {
-        if (!obj.hasOwnProperty(candidate)) continue;
-        mostPopular.push({
-            name: candidate,
-            count: obj[candidate]
-        });
-    }
-
-    mostPopular.sort(function(a, b) {
-        return b.count - a.count;
-    });
-
-    return mostPopular.splice(0, 5);
-}
-
-Lists.getMostPopularCandidatesByRoleName = function(roleName) {
+Lists.getTopList = function() {
     var deferred = q.defer();
 
-    collection.find({'roles.roleName': roleName}).toArray(function(error, data) {
-        var selectedRoleCandidates = [];
+    var list = {
+        roles: []
+    };
 
-        if (data) {
-            data.forEach(function(list) {
-                list.roles.some(function(role) {
-                    if (role.roleName === roleName) {
-                        return selectedRoleCandidates.push(role.candidateName);
-                    }
-                });
+    candidates.getRoleList().then(function(roleList) {
+        var promises = [];
+
+        _.each(roleList, function(roleName) {
+            var inlineDeferred = q.defer();
+
+            candidates.getMostPopularCandidatesByRoleName(roleName).then(function(candidates) {
+                var topCandidate = candidates[0];
+                topCandidate.roleName = roleName;
+
+                list.roles.push(topCandidate);
+                inlineDeferred.resolve(topCandidate)
             });
 
-            deferred.resolve(countMostPopularCandidates(selectedRoleCandidates));
-        } else {
-            deferred.reject(500);
-        }
+            promises.push(inlineDeferred.promise);
+        });
+
+        q.all(promises).then(function() {
+            deferred.resolve([list]);
+        });
     });
 
     return deferred.promise;

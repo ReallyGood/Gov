@@ -12,8 +12,8 @@ angular.module('Gov.Home', [])
                 templateUrl: 'features/home/views/home.html',
                 resolve: {
                     List: function(Lists) {
-                        return Lists.getAll().then(function(lists) {
-                            return lists[0] ? Lists.getListById(lists[0]._id) : []
+                        return Lists.getTopList().then(function(list) {
+                            return list && list.roles.length ? list : Lists.getNewList();
                         });
                     }
                 }

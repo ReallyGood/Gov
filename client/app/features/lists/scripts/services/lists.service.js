@@ -9,12 +9,21 @@
     function Lists($q, Restangular, Roles) {
         var ListsResource = Restangular.service('lists');
 
+        function sortRoles(a, b) {
+            return Roles.indexOf(a.roleName) - Roles.indexOf(b.roleName);
+        }
+
         this.getListById = function(id) {
             return ListsResource.one(id).get();
         };
 
-        this.getAll = function() {
-            return ListsResource.getList();
+        this.getTopList = function() {
+            return ListsResource.getList({special: 'topList'}).then(function(list) {
+                list = list[0];
+                list.roles.sort(sortRoles);
+
+                return list;
+            });
         };
 
         this.getNewList = function() {
