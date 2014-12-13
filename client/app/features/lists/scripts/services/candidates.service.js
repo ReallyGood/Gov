@@ -10,7 +10,7 @@
         var CandidatesResource = Restangular.service('candidates');
 
         this.getCandidates = function(name) {
-            return CandidatesResource.getList({name: name});
+            return CandidatesResource.getList({candidateName: name});
         };
     }
 })();

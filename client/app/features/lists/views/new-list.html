@@ -14,9 +14,9 @@
                         <input type="text"
                                id="input-{{$index}}"
                                class="form-control"
-                               ng-class="{'no-empty': role.ministerName !== ''}"
-                               ng-model="role.ministerName"
-                               typeahead="candidates.name for candidates in ListCtrl.getCandidates($viewValue)"
+                               ng-class="{'no-empty': role.candidateName !== ''}"
+                               ng-model="role.candidateName"
+                               typeahead="candidates.candidateName for candidates in ListCtrl.getCandidates($viewValue)"
                                placeholder="הזן את שם המועמד">
                     </div>
                 </div>

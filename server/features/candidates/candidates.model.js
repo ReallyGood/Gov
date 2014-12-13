@@ -2,6 +2,7 @@
  * Created by Adir on 06/12/2014.
  */
 var q = require('q');
+var _ = require('lodash');
 
 var db = require('../../common/databaseManager').getConnection();
 var collection = db.collection('candidates');
@@ -9,16 +10,18 @@ var collection = db.collection('candidates');
 /*
  Candidate:
  {
-    name: String
+    roleName: String
+    candidateName: String
+    listId: String
  }
  */
 
 var Candidates = {};
 
-Candidates.getByName = function(name) {
+Candidates.getByListId = function(listId) {
     var deferred = q.defer();
 
-    collection.find({name: new RegExp(name)}).toArray(function(error, data) {
+    collection.find({listId: listId}).toArray(function(error, data) {
         if (data) {
             deferred.resolve(data);
         } else {
@@ -29,13 +32,33 @@ Candidates.getByName = function(name) {
     return deferred.promise;
 };
 
-Candidates.add = function(name) {
+Candidates.getByCandidateName = function(name) {
     var deferred = q.defer();
 
-    if (!name || typeof name !== 'string') {
+    collection.find({candidateName: new RegExp(name)}).toArray(function(error, data) {
+        if (data) {
+            deferred.resolve(data);
+        } else {
+            deferred.reject(500);
+        }
+    });
+
+    return deferred.promise;
+};
+
+Candidates.addBulk = function(listId, candidateList) {
+    var deferred = q.defer();
+
+    if (!listId || typeof listId !== 'string') {
+        deferred.reject(400);
+    } else if (!candidateList || !Array.isArray(candidateList)) {
         deferred.reject(400);
     } else {
-        collection.insert({name: name}, function(error, data) {
+        var candidateListWithListIds = _.each(candidateList, function(candidate) {
+            candidate.listId = listId;
+        });
+
+        collection.insert(candidateListWithListIds, function(error, data) {
             if (data) {
                 deferred.resolve(data);
             } else {
@@ -45,20 +68,6 @@ Candidates.add = function(name) {
     }
 
     return deferred.promise;
-};
-
-Candidates.bulkAddNew = function(names) {
-    if (!names || !Array.isArray(names)) return false;
-
-    names.forEach(function(name) {
-        collection.find({name: name}).toArray(function(error, data) {
-            if (data && data.length === 0) {
-                Candidates.add(name);
-            }
-        });
-    });
-
-    return true;
 };
 
 module.exports = Candidates;

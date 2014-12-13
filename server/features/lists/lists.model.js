@@ -12,13 +12,7 @@ var candidates = require('../candidates/candidates.model');
 /*
  List:
  {
-    roles: [Role]
- }
-
- Role:
- {
-    roleName: String
-    ministerName: String
+    roles: [Candidate]
  }
  */
 
@@ -43,7 +37,10 @@ Lists.getById = function(id) {
 
     collection.findById(id, function(error, data) {
         if (data) {
-            deferred.resolve(data);
+            candidates.getByListId(id).then(function(roles) {
+                var list = _.merge(data, {roles: roles});
+                deferred.resolve(list);
+            });
         } else {
             deferred.reject(500);
         }
@@ -58,13 +55,20 @@ Lists.add = function(list) {
     if (!list || typeof list !== 'object') {
         deferred.reject(400);
     } else {
-        collection.insert(list, function(error, data) {
-            if (data) {
-                // add new candidates
-                var candidateList = _.pluck(list.roles, 'ministerName');
-                candidates.bulkAddNew(candidateList);
+        var listDataOnly = _.omit(list, 'roles');
+        var candidateList = list.roles;
 
-                deferred.resolve(data);
+        collection.insert(listDataOnly, function(error, data) {
+            if (data) {
+                var insertedList = data[0];
+                candidates.addBulk(insertedList._id.toString(), candidateList).then(function(roles) {
+                    if (roles) {
+                        var completeList = _.merge(insertedList, {roles: roles});
+                        deferred.resolve(completeList);
+                    } else {
+                        deferred.reject(500);
+                    }
+                });
             } else {
                 deferred.reject(500);
             }
@@ -94,8 +98,8 @@ function countMostPopularCandidates(candidates) {
         });
     }
 
-    mostPopular.sort(function(a,b) {
-        return b.count -a.count;
+    mostPopular.sort(function(a, b) {
+        return b.count - a.count;
     });
 
     return mostPopular.splice(0, 5);
@@ -111,7 +115,7 @@ Lists.getMostPopularCandidatesByRoleName = function(roleName) {
             data.forEach(function(list) {
                 list.roles.some(function(role) {
                     if (role.roleName === roleName) {
-                        return selectedRoleCandidates.push(role.ministerName);
+                        return selectedRoleCandidates.push(role.candidateName);
                     }
                 });
             });

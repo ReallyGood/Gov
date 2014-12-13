@@ -13,6 +13,10 @@
             return ListsResource.one(id).get();
         };
 
+        this.getAll = function() {
+            return ListsResource.getList();
+        };
+
         this.getNewList = function() {
             var deferred = $q.defer();
 
@@ -23,7 +27,7 @@
             Roles.forEach(function(role) {
                 newList.roles.push({
                     roleName: role,
-                    ministerName: ''
+                    candidateName: ''
                 });
             });
 
@@ -33,9 +37,7 @@
         };
 
         this.saveList = function(list) {
-            return ListsResource.post(list).then(function(result) {
-                return result[0];
-            });
+            return ListsResource.post(list);
         };
     }
 })();

@@ -8,15 +8,8 @@ var responseManager = require('../../common/responseManager');
 var Lists = require('./lists.model');
 
 router.get('/lists', function(req, res) {
-    var method;
-
-    if (req.query && req.query['roles.roleName']) {
-        method = Lists.getMostPopularCandidatesByRoleName(req.query['roles.roleName']);
-    } else {
-        method = Lists.getAll();
-    }
-
-    responseManager(req, res, method);
+    var getAll = Lists.getAll();
+    responseManager(req, res, getAll);
 });
 
 router.post('/lists', function(req, res) {

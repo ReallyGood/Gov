@@ -12,8 +12,9 @@ angular.module('Gov.Home', [])
                 templateUrl: 'features/home/views/home.html',
                 resolve: {
                     List: function(Lists) {
-                        // TODO: implement top list
-                        return Lists.getListById('548604c180d8de3e3145d414');
+                        return Lists.getAll().then(function(lists) {
+                            return Lists.getListById(lists[0]._id)
+                        });
                     }
                 }
             });

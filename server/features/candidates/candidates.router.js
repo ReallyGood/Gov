@@ -8,8 +8,8 @@ var responseManager = require('../../common/responseManager');
 var Candidates = require('./candidates.model');
 
 router.get('/candidates', function(req, res) {
-    var getByName = Candidates.getByName(req.query.name);
-    responseManager(req, res, getByName);
+    var getByCandidateName = Candidates.getByCandidateName(req.query.candidateName);
+    responseManager(req, res, getByCandidateName);
 });
 
 module.exports = router;
