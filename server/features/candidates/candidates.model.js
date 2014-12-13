@@ -153,7 +153,10 @@ Candidates.addBulk = function(listId, candidateList) {
     } else if (!candidateList || !Array.isArray(candidateList)) {
         deferred.reject(400);
     } else {
-        var candidateListWithListIds = _.each(candidateList, function(candidate) {
+        var candidateListWithoutEmptyCandidateNames = _.filter(candidateList, function(candidate) {
+            return candidate.candidateName !== '';
+        });
+        var candidateListWithListIds = _.each(candidateListWithoutEmptyCandidateNames, function(candidate) {
             candidate.listId = listId;
         });
 
