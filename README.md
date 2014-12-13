@@ -17,8 +17,6 @@
     npm install
     bower install
 
-And make sure you have ruby + compass installed ([instructions here](http://compass-style.org/install/)) - We'll get rid of this dependency soon.
-
 #### Run
 1. Make sure `mongod` is running
 1. From the server folder, run `node app`
