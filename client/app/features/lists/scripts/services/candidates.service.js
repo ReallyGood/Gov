@@ -12,5 +12,9 @@
         this.getCandidates = function(name) {
             return CandidatesResource.getList({candidateName: name});
         };
+
+        this.getMostPopularCandidates = function(roleName) {
+            return CandidatesResource.getList({roleName: roleName});
+        }
     }
 })();

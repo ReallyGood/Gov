@@ -8,8 +8,17 @@ var responseManager = require('../../common/responseManager');
 var Candidates = require('./candidates.model');
 
 router.get('/candidates', function(req, res) {
-    var getByCandidateName = Candidates.getByCandidateName(req.query.candidateName);
-    responseManager(req, res, getByCandidateName);
+    var method;
+
+    if (req.query.candidateName && req.query.roleName) {
+        method = Candidates.countCandidateVotesForRoleName(req.query.candidateName, req.query.roleName);
+    } else if (req.query.roleName) {
+        method = Candidates.getMostPopularCandidatesByRoleName(req.query.roleName);
+    } else if (req.query.candidateName) {
+        method = Candidates.getByCandidateName(req.query.candidateName);
+    }
+
+    responseManager(req, res, method);
 });
 
 module.exports = router;

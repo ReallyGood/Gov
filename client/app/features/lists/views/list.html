@@ -14,30 +14,20 @@
                 <div class="panel-heading" role="tab" id="heading-{{$index}}">
                     <h4 class="panel-title">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index}}"
-                           aria-expanded="false" aria-controls="collapse-{{$index}}">
+                           aria-expanded="false" aria-controls="collapse-{{$index}}" ng-click="ListCtrl.getMostPopularCandidates(role)">
                             <span class="row-label" ng-bind="role.roleName"></span>
                             <span class="row-field bold" ng-bind="role.candidateName"></span>
-                            <span class="row-votes">123</span>
+                            <span class="row-votes" ng-bind="role.totalVotes"></span>
                         </a>
                     </h4>
                 </div>
                 <div id="collapse-{{$index}}" class="panel-collapse collapse" role="tabpanel"
                      aria-labelledby="heading-{{$index}}">
                     <div class="panel-body">
-                        <div class="sub-row">
-                            <span class="row-label"></span>
-                            <span class="row-field">בנימין  נתניהו</span>
-                            <span class="row-votes">123</span>
-                        </div>
-                        <div class="sub-row">
-                            <span class="row-label"></span>
-                            <span class="row-field">בנימין  נתניהו</span>
-                            <span class="row-votes">123</span>
-                        </div>
-                        <div class="sub-row">
-                            <span class="row-label"></span>
-                            <span class="row-field">בנימין  נתניהו</span>
-                            <span class="row-votes">123</span>
+                        <div class="sub-row" ng-repeat="candidate in role.mostPopularCandidates">
+                            <span class="row-label">&nbsp;</span>
+                            <span class="row-field" ng-bind="candidate.candidateName"></span>
+                            <span class="row-votes" ng-bind="candidate.totalVotes"></span>
                         </div>
                     </div>
                 </div>

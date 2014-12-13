@@ -22,6 +22,15 @@
             });
         };
 
+        self.getMostPopularCandidates = function(role) {
+            if (!role || !role.roleName) return;
+            if (role.mostPopularCandidates && role.mostPopularCandidates.length) return;
+
+            Candidates.getMostPopularCandidates(role.roleName).then(function(mostPopularCandidates) {
+                role.mostPopularCandidates = mostPopularCandidates;
+            });
+        };
+
         init();
     }
 })();

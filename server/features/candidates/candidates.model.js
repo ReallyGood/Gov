@@ -23,7 +23,22 @@ Candidates.getByListId = function(listId) {
 
     collection.find({listId: listId}).toArray(function(error, data) {
         if (data) {
-            deferred.resolve(data);
+            var promises = [];
+
+            data.forEach(function(candidate) {
+                var inlineDeferred = q.defer();
+
+                Candidates.countCandidateVotesForRoleName(candidate.candidateName, candidate.roleName).then(function(result) {
+                    candidate.totalVotes = result.totalVotes;
+                    inlineDeferred.resolve(candidate);
+                });
+
+                promises.push(inlineDeferred.promise);
+            });
+
+            q.all(promises).then(function() {
+                deferred.resolve(data);
+            });
         } else {
             deferred.reject(500);
         }
@@ -38,6 +53,61 @@ Candidates.getByCandidateName = function(name) {
     collection.find({candidateName: new RegExp(name)}).toArray(function(error, data) {
         if (data) {
             deferred.resolve(data);
+        } else {
+            deferred.reject(500);
+        }
+    });
+
+    return deferred.promise;
+};
+
+Candidates.getMostPopularCandidatesByRoleName = function(roleName) {
+    var deferred = q.defer();
+
+    var searchQuery = [
+        {
+            $match: {
+                roleName: roleName
+            }
+        },
+        {
+            $group: {
+                _id: '$candidateName',
+                totalVotes: {$sum: 1}
+            }
+        },
+        {
+            $sort: {
+                totalVotes: -1
+            }
+        },
+        {
+            $limit: 3
+        }
+    ];
+
+    collection.aggregate(searchQuery, function(error, data) {
+        if (data) {
+            var mostPopularCandidates = _.each(data, function(candidate) {
+                candidate.candidateName = candidate._id;
+                delete candidate._id;
+            });
+
+            deferred.resolve(mostPopularCandidates);
+        } else {
+            deferred.reject(500);
+        }
+    });
+
+    return deferred.promise;
+};
+
+Candidates.countCandidateVotesForRoleName = function(candidateName, roleName) {
+    var deferred = q.defer();
+
+    collection.find({candidateName: candidateName, roleName: roleName}).toArray(function(error, data) {
+        if (data) {
+            deferred.resolve({totalVotes: data.length});
         } else {
             deferred.reject(500);
         }

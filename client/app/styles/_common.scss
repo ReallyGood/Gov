@@ -204,7 +204,9 @@ ul[typeahead-popup] {
 }
 
 .panel-body {
-	background: #dfeefb
+	background: #dfeefb;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
