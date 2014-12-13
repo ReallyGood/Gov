@@ -13,7 +13,7 @@ angular.module('Gov.Home', [])
                 resolve: {
                     List: function(Lists) {
                         return Lists.getAll().then(function(lists) {
-                            return Lists.getListById(lists[0]._id)
+                            return lists[0] ? Lists.getListById(lists[0]._id) : []
                         });
                     }
                 }
