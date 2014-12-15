@@ -10,6 +10,12 @@ var Lists = require('./lists.model');
 router.get('/lists', function(req, res) {
     var method;
 
+    // Doesn't works yet, and I'm pretty sure it shouldn't work like that..
+    // It's only exists in the first request after login
+    if (req.sessionStore.sessions[req.sessionID]) {
+        console.log(JSON.parse(req.sessionStore.sessions[req.sessionID]).passport.user);
+    }
+
     if (req.query.special === 'topList') {
         method = Lists.getTopList();
     } else {

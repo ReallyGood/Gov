@@ -14,6 +14,7 @@ angular.module('Gov', [
     'Gov.Lists'
 ]).config(function($urlRouterProvider, RestangularProvider, Config) {
     RestangularProvider.setBaseUrl(Config.rest.serverUrl);
+    RestangularProvider.setDefaultHttpFields({withCredentials: true});
     RestangularProvider.setRestangularFields({id: '_id'});
 
     $urlRouterProvider.otherwise('/');

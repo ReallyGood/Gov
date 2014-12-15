@@ -30,7 +30,7 @@
         <div id="navbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a>
+                    <a href="http://localhost:3030/auth/facebook/login">
                         <span class="glyphicon-user glyphicon"></span>
                         <strong>התחבר</strong>
                         &nbsp;
@@ -57,27 +57,6 @@
         <a href="" target="_blank">Name</a>
     </div>
 </footer>
-
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '1382830152012842',
-            xfbml: true,
-            version: 'v2.2'
-        });
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 
 <!-- build:js(app) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
