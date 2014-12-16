@@ -4,7 +4,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+var session = require('cookie-session');
 var app = express();
 
 function allowCrossDomain(req, res, next) {
@@ -16,13 +16,15 @@ function allowCrossDomain(req, res, next) {
     next();
 }
 app.use(allowCrossDomain);
-app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(session({
-    secret: 'whatever123',
-    resave: false,
-    saveUninitialized: true
+	secret: 'whatever123',
+	resave: false,
+	saveUninitialized: true
 }));
+
+app.use(express.static(__dirname + '\\..\\client'));
 
 var config = require('./config');
 var routersManager = require('./common/routersManager')(app);

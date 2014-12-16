@@ -31,6 +31,23 @@
             });
         };
 
+        self.shareOnFb = function(roles){
+        	var desc='';
+        	if (roles && roles.length>0){
+        		desc+="אני בחרתי ב"+ roles[0].candidateName + " להיות " + roles[0].roleName
+        	}
+
+			FB.ui({
+				link: 'http://localhost:3030/app/index.html#/lists/548ff17c908ccb201f11adce',
+				name: desc,
+				caption:'בוא תבחר את הממשלה האולטימטיבית שלך',
+//				picture:,
+				method: 'feed',
+				app_id:807681765941199
+
+			}, function(response){});
+        };
+
         init();
     }
 })();

@@ -29,10 +29,18 @@
 
         <div id="navbar">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="http://localhost:3030/auth/facebook/login">
+                <li ng-hide="user">
+                    <a href="/auth/facebook/login">
                         <span class="glyphicon-user glyphicon"></span>
                         <strong>התחבר</strong>
+                        &nbsp;
+                        <span class="glyphicon-chevron-left glyphicon"></span>
+                    </a>
+                </li>
+                <li ng-show="user">
+                    <a ng-click="MainCtrl.logout()" href="" class="profile-picture">
+                        <img ng-src="{{user.picture}}" />
+                        <strong>התנתק</strong>
                         &nbsp;
                         <span class="glyphicon-chevron-left glyphicon"></span>
                     </a>

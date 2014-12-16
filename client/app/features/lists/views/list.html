@@ -4,7 +4,7 @@
 
         <div class="actions pull-left">
             <button type="button" class="cta-btn white">ערוך רשימה</button>
-            <button type="button" class="cta-btn white">שתף רשימה</button>
+            <button type="button" class="cta-btn white" ng-click="ListCtrl.shareOnFb(ListCtrl.list.roles)">שתף רשימה</button>
         </div>
     </div>
 
@@ -36,4 +36,6 @@
     </div>
 
     <button type="button" class="cta-btn white cta-bottom">ערוך רשימה</button>
+
+    <script src="//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=807681765941199&version=v2.0"></script>
 </div>
