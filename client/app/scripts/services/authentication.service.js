@@ -20,6 +20,6 @@
 
         this.logout = function() {
             return logoutResource.get();
-        }
+        };
     }
 })();

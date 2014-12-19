@@ -15,6 +15,6 @@
 
         this.getMostPopularCandidates = function(roleName) {
             return CandidatesResource.getList({roleName: roleName});
-        }
+        };
     }
 })();
