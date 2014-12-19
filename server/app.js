@@ -24,8 +24,6 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-app.use(express.static(__dirname + '\\..\\client'));
-
 var config = require('./config');
 var routersManager = require('./common/routersManager')(app);
 

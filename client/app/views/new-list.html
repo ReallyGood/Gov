@@ -16,13 +16,13 @@
                                class="form-control"
                                ng-class="{'no-empty': role.candidateName !== ''}"
                                ng-model="role.candidateName"
-                               typeahead="candidates.candidateName for candidates in ListCtrl.getCandidates($viewValue)"
+                               typeahead="candidate for candidate in ListCtrl.getCandidates($viewValue)"
                                placeholder="הזן את שם המועמד">
                     </div>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="cta-btn white cta-bottom">שמור ושתף</button>
+        <button type="submit" class="cta-btn white cta-bottom">שמור</button>
     </form>
 </div>

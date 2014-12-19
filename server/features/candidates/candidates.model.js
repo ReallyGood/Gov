@@ -50,9 +50,35 @@ Candidates.getByListId = function(listId) {
 Candidates.getByCandidateName = function(name) {
     var deferred = q.defer();
 
-    collection.find({candidateName: new RegExp(name)}).toArray(function(error, data) {
+    var searchQuery = [
+        {
+            $match: {
+                candidateName: new RegExp('^' + name)
+            }
+        },
+        {
+            $group: {
+                _id: '$candidateName',
+                totalVotes: {$sum: 1}
+            }
+        },
+        {
+            $sort: {
+                totalVotes: -1,
+                _id: 1
+            }
+        },
+        {
+            $limit: 5
+        }
+    ];
+
+    collection.aggregate(searchQuery, function(error, data) {
         if (data) {
-            deferred.resolve(data);
+            var dataArray = _.map(data, function(item) {
+                return item._id;
+            });
+            deferred.resolve(dataArray);
         } else {
             deferred.reject(500);
         }

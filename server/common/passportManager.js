@@ -19,8 +19,8 @@ function PassportManager(passport) {
     });
 
     passport.use(new FacebookStrategy({
-            clientID: '807681765941199', // FACEBOOK_APP_ID
-            clientSecret: 'c64ee574724f64f077c12e28f1270267', // FACEBOOK_APP_SECRET
+            clientID: '1382830152012842', // FACEBOOK_APP_ID
+            clientSecret: '5b1abfe74b7fa0cd10f2d4a2bb726622', // FACEBOOK_APP_SECRET
             passReqToCallback: true,
             profileFields: ['emails', 'photos', 'name']
         }, function(req, token, refreshToken, profile, done) {

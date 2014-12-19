@@ -36,8 +36,8 @@ Users.addNewUser = function(user) {
     var deferred = q.defer();
 
     collection.insert(user, function(error, data) {
-        if (data) {
-            deferred.resolve(data);
+        if (data && Array.isArray(data) && data.length === 1) {
+            deferred.resolve(data[0]);
         } else {
             deferred.reject(500);
         }

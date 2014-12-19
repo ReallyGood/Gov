@@ -4,7 +4,7 @@
 'use strict';
 
 (function() {
-    angular.module('Gov.Lists').service('Candidates', Candidates);
+    angular.module('Gov').service('Candidates', Candidates);
 
     function Candidates(Restangular) {
         var CandidatesResource = Restangular.service('candidates');

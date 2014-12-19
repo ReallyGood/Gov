@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="Gov">
+<html class="no-js" ng-app="Gov" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <meta charset="utf-8">
     <title>ממשלת העם</title>
@@ -7,64 +7,73 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
+    <meta property="og:url" content="http://gov.adir.me">
+    <meta property="og:title" content="ממשלת העם">
+    <meta property="og:description" content="בוא תבחר את הממשלה האולטימטיבית שלך">
+
     <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
-    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/opensanshebrew.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/opensanshebrew.css">
 
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
 <body ng-controller="MainCtrl as MainCtrl">
+<div class="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="share-on-fb">
+                <fb:share-button href="http://gov.adir.me" layout="button_count"></fb:share-button>
+            </div>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="home">ממשלת העם</a>
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="home">ממשלת העם</a>
+            </div>
+
+            <div id="navbar clearfix" ng-cloak>
+                <ul class="nav navbar-nav">
+                    <li ng-hide="MainCtrl.user">
+                        <a ng-href="{{MainCtrl.loginUrl}}">
+                            <span class="glyphicon-user glyphicon"></span>
+                            <strong>התחבר</strong>
+                            &nbsp;
+                            <span class="glyphicon-chevron-left glyphicon"></span>
+                        </a>
+                    </li>
+                    <li ng-show="MainCtrl.user">
+                        <a ng-click="MainCtrl.logout()" href="" class="profile-picture">
+                            <img ng-src="{{MainCtrl.user.picture}}">
+                            <strong>התנתק</strong>
+                            &nbsp;
+                            <span class="glyphicon-chevron-left glyphicon"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div id="navbar">
-            <ul class="nav navbar-nav">
-                <li ng-hide="user">
-                    <a href="/auth/facebook/login">
-                        <span class="glyphicon-user glyphicon"></span>
-                        <strong>התחבר</strong>
-                        &nbsp;
-                        <span class="glyphicon-chevron-left glyphicon"></span>
-                    </a>
-                </li>
-                <li ng-show="user">
-                    <a ng-click="MainCtrl.logout()" href="" class="profile-picture">
-                        <img ng-src="{{user.picture}}" />
-                        <strong>התנתק</strong>
-                        &nbsp;
-                        <span class="glyphicon-chevron-left glyphicon"></span>
-                    </a>
-                </li>
-            </ul>
+    <div class="blue-bg">
+        <div class="container">
+            <div ui-view></div>
         </div>
     </div>
-</nav>
 
-<div class="blue-bg">
-    <div class="container">
-        <div ui-view></div>
-    </div>
+    <footer>
+        <div class="container">
+            Created by:
+            <a href="https://www.facebook.com/adir.amsalem1" target="_blank">Adir</a>,
+            <a href="http://jacksdesign.net" target="_blank">Leonid</a>,
+            <a href="" target="_blank">Name</a>,
+            <a href="" target="_blank">Name</a>
+        </div>
+    </footer>
 </div>
-
-<footer>
-    <div class="container">
-        Created by:
-        <a href="https://www.facebook.com/adir.amsalem1" target="_blank">Adir</a>,
-        <a href="http://jacksdesign.net" target="_blank">Leonid</a>,
-        <a href="" target="_blank">Name</a>,
-        <a href="" target="_blank">Name</a>
-    </div>
-</footer>
 
 <!-- build:js(app) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
@@ -72,6 +81,16 @@
 <script src="bower_components/json3/lib/json3.js"></script>
 <![endif]-->
 <!-- endbuild -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/he_IL/sdk.js#xfbml=1&appId=1382830152012842&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- build:js(app) scripts/vendor.js -->
 <!-- bower:js -->
@@ -89,14 +108,12 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/config.js"></script>
-<script src="scripts/main.controller.js"></script>
-<script src="features/home/scripts/home.module.js"></script>
-<script src="features/home/scripts/controllers/home.controller.js"></script>
-<script src="features/lists/scripts/lists.module.js"></script>
-<script src="features/lists/scripts/controllers/list.controller.js"></script>
-<script src="features/lists/scripts/services/lists.service.js"></script>
-<script src="features/lists/scripts/services/roles.service.js"></script>
-<script src="features/lists/scripts/services/candidates.service.js"></script>
+<script src="scripts/controllers/main.controller.js"></script>
+<script src="scripts/controllers/list.controller.js"></script>
+<script src="scripts/services/lists.service.js"></script>
+<script src="scripts/services/roles.service.js"></script>
+<script src="scripts/services/candidates.service.js"></script>
+<script src="scripts/services/authentication.service.js"></script>
 <!-- endbuild -->
 </body>
 </html>

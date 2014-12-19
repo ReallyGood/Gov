@@ -26,5 +26,5 @@
         'מבקר המדינה'
     ];
 
-    angular.module('Gov.Lists').value('Roles', Roles);
+    angular.module('Gov').value('Roles', Roles);
 })();

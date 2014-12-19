@@ -7,6 +7,9 @@
     var Config = {
         rest: {
             serverUrl: 'http://' + window.location.hostname + ':3030/'
+        },
+        paths: {
+            views: '../views/'
         }
     };
 

@@ -1,13 +1,8 @@
 // bower:scss
 // endbower
 
-.profile-picture{
-	padding-top:0 !important;
-	padding-bottom:0 !important;
-}
-
 @import 'variables';
 @import 'common';
-
-@import '../features/home/styles/main';
-@import '../features/lists/styles/main';
+@import 'home';
+@import 'new-list';
+@import 'list';
