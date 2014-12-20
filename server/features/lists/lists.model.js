@@ -12,25 +12,12 @@ var candidates = require('../candidates/candidates.model');
 /*
  List:
  {
+    userName: String
     roles: [Candidate]
  }
  */
 
 var Lists = {};
-
-Lists.getAll = function() {
-    var deferred = q.defer();
-
-    collection.find().toArray(function(error, data) {
-        if (data) {
-            deferred.resolve(data);
-        } else {
-            deferred.reject(500);
-        }
-    });
-
-    return deferred.promise;
-};
 
 Lists.getById = function(id) {
     var deferred = q.defer();
@@ -38,7 +25,8 @@ Lists.getById = function(id) {
     collection.findById(id, function(error, data) {
         if (data) {
             candidates.getByListId(id).then(function(roles) {
-                var list = _.merge(data, {roles: roles});
+                var list = _.merge(_.omit(data, 'user'), {roles: roles});
+                list.userName = data.user.firstName + ' ' + data.user.lastName;
 
                 _.each(list.roles, function(role) {
                     delete role._id;
@@ -55,12 +43,13 @@ Lists.getById = function(id) {
     return deferred.promise;
 };
 
-Lists.add = function(list) {
+Lists.add = function(user, list) {
     var deferred = q.defer();
 
     if (!list || typeof list !== 'object') {
         deferred.reject(400);
     } else {
+        list.user = user;
         var listDataOnly = _.omit(list, 'roles');
         var candidateList = list.roles;
 
@@ -69,7 +58,9 @@ Lists.add = function(list) {
                 var insertedList = data[0];
                 candidates.addBulk(insertedList._id.toString(), candidateList).then(function(roles) {
                     if (roles) {
-                        var completeList = _.merge(insertedList, {roles: roles});
+                        var completeList = _.merge(_.omit(insertedList, 'user'), {roles: roles});
+                        completeList.userName = insertedList.user.firstName + ' ' + insertedList.user.lastName;
+
                         deferred.resolve(completeList);
                     } else {
                         deferred.reject(500);

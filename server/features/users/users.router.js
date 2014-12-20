@@ -22,8 +22,8 @@ router.get('/auth/facebook/login_callback', function(req, res, next) {
         'facebook',
         {
             callbackURL: '/auth/facebook/login_callback',
-            successRedirect: 'http://localhost:9000',
-            failureRedirect: 'http://localhost:9000'
+            successRedirect: 'http://gov.adir.me',
+            failureRedirect: 'http://gov.adir.me'
         }
     )(req, res, next);
 });
@@ -34,7 +34,7 @@ router.get('/loggedin', function(req, res) {
 
 router.get('/logout', function(req, res) {
     req.logout();
-    res.status(200).end();
+    res.sendStatus(200).end();
 });
 
 module.exports = router;

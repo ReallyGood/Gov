@@ -1,17 +1,20 @@
 <div class="home">
     <h1 class="title">בנה לך ממשלה</h1>
 
-    <h2>טקסט כלשהו שהוא גם הסבר למה שקורה פה וגם הנעה לפעולה</h2>
+    <h2>בואו תרכיבו את הממשלה שלכם, בעצמכם.</h2>
 
-    <button ui-sref="list" type="button" class="cta-btn white">התחבר ותצביע עכשיו</button>
+    <button ng-click="ListCtrl.buildAList(MainCtrl.user)" type="button" class="cta-btn white">הרכב ממשלה</button>
 
     <div class="middle-wrap" votes-label="מס' הצבעות">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
             <div ng-repeat="role in ::ListCtrl.list.roles" class="panel panel-default">
                 <div class="panel-heading" role="tab" id="heading-{{$index}}">
                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index}}"
-                           aria-expanded="false" aria-controls="collapse-{{$index}}" ng-click="ListCtrl.getMostPopularCandidates(role)">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                           data-target="#collapse-{{$index}}"
+                           aria-expanded="false" aria-controls="collapse-{{$index}}"
+                           ng-click="ListCtrl.getMostPopularCandidates(role)">
                             <span class="row-label" ng-bind="::role.roleName"></span>
                             <span class="row-field bold" ng-bind="::role.candidateName"></span>
                             <span class="row-votes" ng-bind="::role.totalVotes | number"></span>
@@ -32,5 +35,5 @@
         </div>
     </div>
 
-    <button ui-sref="list" type="button" class="cta-btn white cta-bottom">התחבר ותצביע עכשיו</button>
+    <button ng-click="ListCtrl.buildAList(MainCtrl.user)" type="button" class="cta-btn white cta-bottom">הרכב ממשלה</button>
 </div>

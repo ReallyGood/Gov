@@ -1,6 +1,6 @@
 <div class="list">
     <div class="list-header clearfix">
-        <h2 class="title pull-right">ממשלת החלומות שלך:</h2>
+        <h2 class="title pull-right">ממשלת החלומות של {{::ListCtrl.list.userName}}:</h2>
 
         <div class="actions pull-left">
             <!--<button type="button" class="cta-btn white">ערוך רשימה</button>-->
@@ -13,8 +13,10 @@
             <div ng-repeat="role in ::ListCtrl.list.roles" class="panel panel-default">
                 <div class="panel-heading" role="tab" id="heading-{{$index}}">
                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-{{$index}}"
-                           aria-expanded="false" aria-controls="collapse-{{$index}}" ng-click="ListCtrl.getMostPopularCandidates(role)">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                           data-target="#collapse-{{$index}}"
+                           aria-expanded="false" aria-controls="collapse-{{$index}}"
+                           ng-click="ListCtrl.getMostPopularCandidates(role)">
                             <span class="row-label" ng-bind="::role.roleName"></span>
                             <span class="row-field bold" ng-bind="::role.candidateName"></span>
                             <span class="row-votes" ng-bind="::role.totalVotes | number"></span>

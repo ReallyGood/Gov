@@ -14,6 +14,14 @@
             self.getCandidates = Candidates.getCandidates;
         }
 
+        self.buildAList = function(user) {
+            if (!user) {
+                $window.alert('יש להתחבר על מנת להרכיב ממשלה');
+            } else {
+                $state.go('list');
+            }
+        };
+
         self.saveList = function(list) {
             if ($window.confirm('האם ברצונך לשמור את הרשימה?')) {
                 Lists.saveList(list).then(function(result) {

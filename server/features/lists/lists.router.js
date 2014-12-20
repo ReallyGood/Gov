@@ -13,15 +13,19 @@ router.get('/lists', function(req, res) {
     if (req.query.special === 'topList') {
         method = Lists.getTopList();
     } else {
-        method = Lists.getAll();
+        return res.sendStatus(400).end();
     }
 
     responseManager(req, res, method);
 });
 
 router.post('/lists', function(req, res) {
-    var add = Lists.add(req.body);
-    responseManager(req, res, add);
+    if (!req.isAuthenticated()) {
+        res.sendStatus(401).end();
+    } else {
+        var add = Lists.add(req.user, req.body);
+        responseManager(req, res, add);
+    }
 });
 
 router.get('/lists/:id', function(req, res) {
