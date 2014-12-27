@@ -18,7 +18,7 @@ body {
     float: right;
     height: 50px;
     padding: 15px 15px;
-    font-size: $font-size;
+    font-size: 1.1em;
     line-height: 20px;
     margin-left: 0;
     margin-right: -15px;
@@ -50,7 +50,7 @@ body {
 }
 
 .navbar-nav {
-    font-size: 14px;
+    font-size: 0.8em;
 }
 
 .navbar-nav li {
@@ -73,7 +73,7 @@ body {
 }
 
 .navbar-nav .glyphicon.glyphicon-user {
-    font-size: $font-size;
+    font-size: 1.25em;
     display: inline-block;
     float: right;
     margin-left: 10px;
@@ -102,7 +102,7 @@ body {
         left: 7%;
         width: 15%;
         text-align: center;
-        font-size: 14px;
+        font-size: 0.8em;
         border-radius: 5px 5px 0 0;
     }
 
@@ -127,11 +127,11 @@ h2 {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 1.7em;
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 0.9em;
     letter-spacing: 1px
 }
 
@@ -176,7 +176,7 @@ ul[typeahead-popup] {
     color: $inverse-font-color;
     margin: 40px auto;
     margin-bottom: 30px;
-    font-size: $font-size;
+    font-size: 1em;
     font-weight: 400;
     letter-spacing: 1px;
 
@@ -200,16 +200,16 @@ ul[typeahead-popup] {
 .row-votes {
     display: inline-block;
     width: 15%;
-    font-size: 16px;
+    font-size: 0.9em;
     text-align: center;
 }
 
 .sub-row {
     line-height: 36px;
-    font-size: 14px;
+    font-size: 0.8em;
 
     .row-votes {
-        font-size: 14px;
+        font-size: 1em;
     }
 }
 
@@ -225,7 +225,7 @@ ul[typeahead-popup] {
     position: relative;
     margin-left: 20px;
     font-family: 'Glyphicons Halflings', serif;
-    font-size: 14px;
+    font-size: 0.8em;
     float: left;
 }
 
@@ -237,7 +237,7 @@ ul[typeahead-popup] {
     text-decoration: none !important;
     line-height: 50px;
     display: block;
-    font-size: $font-size;
+    font-size: 1.1em;
     background: #d0dfec
 }
 
@@ -296,4 +296,53 @@ footer {
 
 footer a {
     color: #fff !important;
+}
+
+@media all and (max-width: 480px) {
+
+    .share-on-fb {
+        display: none;
+    }
+
+    .panel-heading a {
+        font-size: 0.95em;
+
+        &:hover:after {
+            display: none;
+        }
+    }
+
+    .home .middle-wrap:before,
+    .list .middle-wrap:before {
+        display: none;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .container .navbar-header {
+        margin: 0;
+        float: right;
+        line-height: 50px;
+    }
+
+    .navbar-nav {
+        margin: 0;
+        float: left;
+        text-align: left;
+
+        & > li > a {
+            margin: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            line-height: 50px;
+        }
+
+        .glyphicon.glyphicon-user {
+            line-height: 48px;
+        }
+    }
+
+    .panel-heading a.collapsed:after {
+        display: none;
+    }
 }

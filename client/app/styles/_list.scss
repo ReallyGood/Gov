@@ -30,3 +30,23 @@
 		margin-top: 60px;
 	}
 }
+
+
+@media all and (max-width: 480px) {
+
+	.list {
+
+		.title {
+			margin-top: 145px;
+		}
+
+		.actions {
+			margin-top: -95px;
+		}
+
+		.middle-wrap {
+			margin-top: 10px;
+		}
+	}
+
+}

@@ -1,20 +1,32 @@
 .new-list {
 
-	.list-items {
-		line-height: 47px;
-		padding: 15px 0;
-	}
+    .list-items {
+        line-height: 47px;
+        padding: 15px 0;
+    }
 
-	.row-label {
-		text-align: left;
-		width: 25%;
-	}
+    .row-label {
+        text-align: left;
+        width: 25%;
+    }
 
-	.row-input {
-		width: 50%;
-	}
+    .row-input {
+        width: 50%;
+    }
 
-	.form-control.no-empty {
-		font-weight: 700;
-	}
+    .form-control.no-empty {
+        font-weight: 700;
+    }
+}
+
+@media all and (max-width: 480px) {
+
+    .new-list .middle-wrap {
+        font-size: 0.85em;
+
+        .row-label {
+            text-align: right;
+            width: 35%;
+        }
+    }
 }
