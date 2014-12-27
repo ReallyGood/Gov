@@ -155,9 +155,16 @@ ul[typeahead-popup] {
     text-align: right;
 }
 
-.profile-picture {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+.navbar .profile-picture {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 48px;
+
+    img {
+        border-radius: 50%;
+        margin-left: 3px;
+        height: 38px;
+    }
 }
 
 .cta-btn.white {

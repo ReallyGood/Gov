@@ -45,6 +45,13 @@
             return deferred.promise;
         };
 
+        this.isEmpty = function(list) {
+            return list.roles.every(function(role) {
+                return role.candidateName === ''
+            });
+        };
+
+
         this.saveList = function(list) {
             return ListsResource.post(list);
         };

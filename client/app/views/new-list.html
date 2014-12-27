@@ -1,7 +1,7 @@
 <div class="new-list">
     <h2 class="title">הרכב את ממשלת החלומות שלך:</h2>
 
-    <form class="form-horizontal" role="form" ng-submit="ListCtrl.saveList(ListCtrl.list)">
+    <form class="form-horizontal" role="form">
         <div class="middle-wrap">
             <div class="list-items">
                 <div class="list-item" ng-repeat="role in ListCtrl.list.roles">
@@ -17,12 +17,12 @@
                                ng-class="{'no-empty': role.candidateName !== ''}"
                                ng-model="role.candidateName"
                                typeahead="candidate for candidate in ListCtrl.getCandidates($viewValue)"
-                               placeholder="הזן את שם המועמד">
+                               placeholder="הזן את שם המועמד בעברית">
                     </div>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="cta-btn white cta-bottom">שמור</button>
+        <button type="button" ng-click="ListCtrl.saveList(ListCtrl.list)" class="cta-btn white cta-bottom">שמור</button>
     </form>
 </div>
